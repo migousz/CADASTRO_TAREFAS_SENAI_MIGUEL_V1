@@ -12,11 +12,23 @@
 <body>
     <div class="cartao-aplicacao">
         <header class="cabecalho-aplicacao">
-            <h1>Minhas Tarefas ✨</h1>
+            <h1>Minhas Tarefas</h1>
             <button class="botao-icone" id="botao-alternar-tema">
                 <i class="fa-solid fa-moon"></i>
             </button>
         </header>
+
+        <!-- XP -->
+        <div class="painel-xp">
+            <div class="info-nivel">
+                <span id="texto-nivel">Nível 1</span>
+                <span id="texto-xp">0 / 100 XP</span>
+            </div>
+            <div class="barra-progresso-fundo">
+                <div class="barra-progresso-frente" id="barra-xp"></div>
+            </div>
+        </div>
+
         <div class="caixa-entrada">
             <input type="text" id="campo-tarefa" placeholder="O que vamos fazer hoje?...">
             <button class="botao-principal" id="botao-adicionar">
@@ -29,7 +41,7 @@
             <span id="contador-tarefas">0 tarefas na lista</span>
         </footer>
     </div>
-
+    <img src="po.jpg" alt="Minha Foto" class="foto-canto-inferior">
     <script src="script.js"></script>
 
 </body>

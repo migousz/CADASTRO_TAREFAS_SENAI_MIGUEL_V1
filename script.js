@@ -1,4 +1,3 @@
-
 const campoTarefa = document.getElementById('campo-tarefa');
 const botaoAdicionar = document.getElementById('botao-adicionar');
 const listaTarefas = document.getElementById('lista-tarefas');
@@ -6,12 +5,20 @@ const contadorTarefas = document.getElementById('contador-tarefas');
 const botaoAlternarTema = document.getElementById('botao-alternar-tema');
 const iconeTema = botaoAlternarTema.querySelector('i');
 
+// Elementos de XP e Nível
+const textoNivel = document.getElementById('texto-nivel');
+const textoXp = document.getElementById('texto-xp');
+const barraXp = document.getElementById('barra-xp');
 
 let tarefas = JSON.parse(localStorage.getItem('tarefas')) || [];
+let nivel = parseInt(localStorage.getItem('nivel')) || 1;
+let xp = parseInt(localStorage.getItem('xp')) || 0;
+const xpMaximo = 100;
 
-
-function salvarTarefas() {
+function salvarDados() {
     localStorage.setItem('tarefas', JSON.stringify(tarefas));
+    localStorage.setItem('nivel', nivel);
+    localStorage.setItem('xp', xp);
 }
 
 function atualizarContador() {
@@ -19,14 +26,18 @@ function atualizarContador() {
     contadorTarefas.textContent = `${total} ${total === 1 ? 'tarefa' : 'tarefas'} na lista`;
 }
 
+function atualizarXpUI() {
+    textoNivel.textContent = `Nível ${nivel}`;
+    textoXp.textContent = `${xp} / ${xpMaximo} XP`;
+    const porcentagem = (xp / xpMaximo) * 100;
+    barraXp.style.width = `${porcentagem}%`;
+}
 
 function renderizarTarefas() {
-
     listaTarefas.innerHTML = '';
 
     tarefas.forEach((tarefa, index) => {
         const itemLista = document.createElement('li');
-
         itemLista.className = `item-tarefa ${tarefa.concluida ? 'concluido' : ''}`;
 
         itemLista.innerHTML = `
@@ -45,19 +56,32 @@ function renderizarTarefas() {
     });
 
     atualizarContador();
+    atualizarXpUI();
 }
 
-
 window.alternarConcluido = function (index) {
+    const eraConcluida = tarefas[index].concluida;
     tarefas[index].concluida = !tarefas[index].concluida;
-    salvarTarefas();
+
+    // XP: ganha 20 XP ao concluir
+    if (!eraConcluida && tarefas[index].concluida) {
+        xp += 10;
+        if (xp >= xpMaximo) {
+            xp -= xpMaximo;
+            nivel++;
+            alert(`Parabéns! Você subiu para o Nível ${nivel}!`);
+        }
+    } else if (eraConcluida && !tarefas[index].concluida) {
+        xp = Math.max(0, xp - 10);
+    }
+
+    salvarDados();
     renderizarTarefas();
 };
 
-
 window.excluirTarefa = function (index) {
     tarefas.splice(index, 1);
-    salvarTarefas();
+    salvarDados();
     renderizarTarefas();
 };
 
@@ -69,14 +93,11 @@ function adicionarTarefa() {
         return;
     }
 
-
     tarefas.push({ texto: textoTarefa, concluida: false });
-
     campoTarefa.value = '';
-    salvarTarefas();
+    salvarDados();
     renderizarTarefas();
 }
-
 
 botaoAlternarTema.addEventListener('click', () => {
     document.body.classList.toggle('modo-escuro');
@@ -89,7 +110,6 @@ botaoAlternarTema.addEventListener('click', () => {
         iconeTema.classList.add('fa-moon');
     }
 });
-
 
 botaoAdicionar.addEventListener('click', adicionarTarefa);
 

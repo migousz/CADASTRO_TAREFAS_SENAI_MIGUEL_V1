@@ -1,22 +1,35 @@
-
 :root {
-    --gradiente-fundo: linear-gradient(135deg, #a8edea 0%, #fed6e3 100%);
-    --fundo-cartao: #ffffff;
-    --cor-texto: #2d3748;
-    --cor-primaria: #6c5ce7;
-    ;
-    --cor-primaria-destaque: #5b4bc4;
-    --cor-borda: #edf2f7;
+    --gradiente-fundo: linear-gradient(135deg, #266ecc 0%, #000000 100%);
+    --fundo-cartao: #266ecc;
+    --cor-texto: #000000;
+    --cor-primaria: #3895ff;
+    --cor-primaria-destaque: #0066ff;
+    --cor-borda: #000000;
     --cor-perigo: #ff7675;
-    --cor-concluido: #a0aec0;
+    --cor-concluido: #000000;
+}
+
+.foto-canto-inferior {
+    position: fixed;
+    bottom: 20px;
+    right: 20px;
+    width: 150px;
+    height: 200px; 
+    object-fit: cover; 
+    border-radius: 12px; 
+    border: 3px solid var(--cor-primaria);
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3); 
+    z-index: 1000; 
 }
 
 
 body.modo-escuro {
-    --gradiente-fundo: linear-gradient(135deg, #2d3748 0%, #1a202c 100%);
-    --fundo-cartao: #1a202c;
-    --cor-texto: #f7fafc;
-    --cor-borda: #4a5568;
+    --gradiente-fundo: linear-gradient(135deg, #000000 0%, #002966 100%);
+    --fundo-cartao: #000000;
+    --cor-texto: #3895ff;
+    --cor-borda: #3895ff;
+    --cor-perigo: #ff7675;
+    --cor-concluido: #3895ff;
 }
 
 * {
@@ -50,7 +63,7 @@ body {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    margin-bottom: 25px;
+    margin-bottom: 15px;
 }
 
 .cabecalho-aplicacao h1 {
@@ -58,11 +71,44 @@ body {
     font-weight: 700;
 }
 
+/* ESTILOS do xp*/
+.painel-xp {
+    background: rgba(0, 0, 0, 0.15);
+    padding: 12px;
+    border-radius: 12px;
+    margin-bottom: 20px;
+}
+
+.info-nivel {
+    display: flex;
+    justify-content: space-between;
+    font-size: 0.9rem;
+    font-weight: 600;
+    margin-bottom: 8px;
+    color: inherit;
+}
+
+.barra-progresso-fundo {
+    width: 100%;
+    height: 10px;
+    background: rgba(255, 255, 255, 0.2);
+    border-radius: 5px;
+    overflow: hidden;
+}
+
+.barra-progresso-frente {
+    width: 0%;
+    height: 100%;
+    background: #1da5ff;
+    border-radius: 5px;
+    transition: width 0.4s ease;
+}
+
 .botao-icone {
     background: transparent;
     border: none;
     font-size: 1.2rem;
-    color: var(--cor-texto);
+    color: #fcf7f7;
     cursor: pointer;
 }
 
@@ -75,21 +121,44 @@ body {
 input[type="text"] {
     flex: 1;
     padding: 12px 15px;
-    border: 2px solid var(--cor-borda);
+    border: 2px solid #1359c2;
     border-radius: 12px;
     outline: none;
     font-size: 0.95rem;
     background: transparent;
-    color: var(--cor-texto);
+    color: #000000;
 }
 
-input[type="text"]:focus{
-    border-color: var(--cor-primaria);
+input[type="text"]:focus {
+    border-color: #000000;
+}
+
+body.modo-escuro input[type="text"] {
+    flex: 1;
+    padding: 12px 15px;
+    border: 2px solid #1359c2;
+    border-radius: 12px;
+    outline: none;
+    font-size: 0.95rem;
+    background: transparent;
+    color: #1359c2;
+}
+
+body.modo-escuro input[type="text"]:focus {
+    border-color: #3895ff;
+}
+
+input[type="text"]::placeholder{
+    color: #001238;
+}
+
+body.modo-escuro input[type="text"]::placeholder{
+    color: #2553a3;
 }
 
 .botao-principal {
     background: var(--cor-primaria);
-    color: white;
+    color: rgb(0, 0, 0);
     border: none;
     padding: 12px 18px;
     border-radius: 12px;
@@ -108,12 +177,14 @@ input[type="text"]:focus{
     width: 100%;
     overflow-y: auto;
 }
+
 .item-tarefa {
+    color: #357fff;
     display: flex;
     align-items: center;
     justify-content: space-between;
     padding: 12px;
-    background: var(--cor-borda);
+    background: #002966;
     border-radius: 10px;
     margin-bottom: 10px;
     animation: aparecer 0.3s ease;
@@ -134,7 +205,7 @@ input[type="text"]:focus{
     border: none;
     cursor: pointer;
     font-size: 1rem;
-    color: var(--cor-texto);
+    color: #fcf7f7;
 }
 
 .botao-acao.excluir:hover {
