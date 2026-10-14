@@ -1,279 +1,284 @@
+
 :root {
-    --gradiente-fundo: linear-gradient(135deg, #266ecc 0%, #000000 100%);
-    --fundo-cartao: #266ecc;
-    --cor-texto: #000000;
-    --cor-primaria: #3895ff;
-    --cor-primaria-destaque: #0066ff;
-    --cor-borda: #000000;
-    --cor-perigo: #ff7675;
-    --cor-concluido: #000000;
+    --fundo: #eaf0ff;
+    --cartao: #ffffff;
+    --texto: #263451;
+    --primaria: #5875e8;
+    --destaque: #435bd1;
+    --borda: #dce3f5;
+    --tarefa: #f4f6fc;
+    --secundario: #7d89a8;
 }
-
-.foto-canto-inferior {
-    position: fixed;
-    bottom: 20px;
-    right: 20px;
-    width: 150px;
-    height: 200px; 
-    object-fit: cover; 
-    border-radius: 12px; 
-    border: 3px solid var(--cor-primaria);
-    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3); 
-    z-index: 1000; 
-}
-
 
 body.modo-escuro {
-    --gradiente-fundo: linear-gradient(135deg, #000000 0%, #002966 100%);
-    --fundo-cartao: #000000;
-    --cor-texto: #3895ff;
-    --cor-borda: #3895ff;
-    --cor-perigo: #ff7675;
-    --cor-concluido: #3895ff;
+    --fundo: #171b2b;
+    --cartao: #232940;
+    --texto: #edf0ff;
+    --primaria: #8295ff;
+    --destaque: #6479e8;
+    --borda: #363e5b;
+    --tarefa: #2b324b;
+    --secundario: #a4aecb;
 }
 
 * {
     box-sizing: border-box;
     margin: 0;
     padding: 0;
-    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-    transition: background 0.3s, color 0.3s;
+    font-family: Arial, sans-serif;
 }
 
 body {
-    background: var(--gradiente-fundo);
+    background: var(--fundo);
+    color: var(--texto);
     min-height: 100vh;
     display: flex;
     justify-content: center;
     align-items: center;
-    padding: 20px;
+    padding: 25px;
+    transition: background 0.3s, color 0.3s;
 }
 
 .cartao-aplicacao {
-    background: var(--fundo-cartao);
-    color: var(--cor-texto);
+    background: var(--cartao);
     width: 100%;
-    max-width: 420px;
-    border-radius: 20px;
-    padding: 30px;
-    box-shadow: 0 15px 35px rgba(0, 0, 0, 0.1);
+    max-width: 460px;
+    padding: 26px;
+    border-radius: 18px;
+    box-shadow: 0 5px 20px rgba(50, 70, 120, 0.12);
+    transition: background 0.3s;
 }
 
 .cabecalho-aplicacao {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    margin-bottom: 15px;
+    margin-bottom: 22px;
+    gap: 10px;
 }
 
 .cabecalho-aplicacao h1 {
-    font-size: 1.5rem;
-    font-weight: 700;
+    font-size: 24px;
+    color: var(--texto);
 }
 
-/* ESTILOS do xp*/
-.painel-xp {
-    background: rgba(0, 0, 0, 0.15);
-    padding: 12px;
-    border-radius: 12px;
-    margin-bottom: 20px;
-}
-
-.info-nivel {
-    display: flex;
-    justify-content: space-between;
-    font-size: 0.9rem;
-    font-weight: 600;
-    margin-bottom: 8px;
-    color: inherit;
-}
-
-.barra-progresso-fundo {
-    width: 100%;
-    height: 10px;
-    background: rgba(255, 255, 255, 0.2);
-    border-radius: 5px;
-    overflow: hidden;
-}
-
-.barra-progresso-frente {
-    width: 0%;
-    height: 100%;
-    background: #1da5ff;
-    border-radius: 5px;
-    transition: width 0.4s ease;
-}
-
-.botao-icone {
-    background: transparent;
-    border: none;
-    font-size: 1.2rem;
-    color: #fcf7f7;
-    cursor: pointer;
-}
-
-.caixa-entrada {
-    display: flex;
-    gap: 10px;
-    margin-bottom: 20px;
-}
-
-input[type="text"] {
-    flex: 1;
-    padding: 12px 15px;
-    border: 2px solid #0a2d61;
-    border-radius: 12px;
-    outline: none;
-    font-size: 0.95rem;
-    background: transparent;
-    color: #000000;
-}
-
-input[type="text"]:focus {
-    border-color: #000000;
-}
-
-body.modo-escuro input[type="text"] {
-    flex: 1;
-    padding: 12px 15px;
-    border: 2px solid #1359c2;
-    border-radius: 12px;
-    outline: none;
-    font-size: 0.95rem;
-    background: transparent;
-    color: #1359c2;
-}
-
-body.modo-escuro input[type="text"]:focus {
-    border-color: #3895ff;
-}
-
-input[type="text"]::placeholder{
-    color: #001238;
-}
-
-body.modo-escuro input[type="text"]::placeholder{
-    color: #2553a3;
-}
-
-.botao-principal {
-    background: var(--cor-primaria);
-    color: rgb(0, 0, 0);
-    border: none;
-    padding: 12px 18px;
-    border-radius: 12px;
-    font-weight: 600;
-    cursor: pointer;
-    transition: transform 0.1s, background 0.2s;
-}
-
-.botao-principal:hover {
-    background: var(--cor-primaria-destaque);
-    transform: translateY(-2px);
-}
-
-.lista-tarefas {
-    list-style-type: none;
-    width: 100%;
-    overflow-y: auto;
-}
-
-.item-tarefa {
-    color: #1684dd;
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    padding: 12px;
-    background: #0d3e75;
-    border-radius: 10px;
-    margin-bottom: 10px;
-    animation: aparecer 0.3s ease;
-}
-
-.item-tarefa.concluido span {
-    text-decoration: line-through;
-    color: var(--cor-concluido);
-}
-
-.acoes-tarefa {
-    display: flex;
-    gap: 8px;
-}
-
-.botao-acao {
-    background: none;
-    border: none;
-    cursor: pointer;
-    font-size: 1rem;
-    color: #fcf7f7;
-}
-
-.botao-acao.excluir:hover {
-    color: var(--cor-perigo);
-}
-
-.rodape-aplicacao {
-    margin-top: 15px;
-    font-size: 0.85rem;
-    color: var(--cor-concluido);
-    text-align: center;
-}
-
-@keyframes aparecer {
-    from {
-        opacity: 0;
-        transform: translateY(10px);
-    }
-
-    to {
-        opacity: 1;
-        transform: translateY(0);
-    }
+.cabecalho-aplicacao h1 i {
+    color: var(--primaria);
 }
 
 .titulo-relogio {
     display: flex;
     flex-direction: column;
+    gap: 7px;
 }
 
 .relogio {
-    font-size: 0.95rem;
     font-family: monospace;
-    font-weight: 700;
-    color: #000000;
-    margin-top: 4px;
+    font-size: 14px;
+    font-weight: bold;
+    color: var(--primaria);
 }
 
-body.modo-escuro .relogio {
-    color: var(--cor-primaria);
+.botao-icone {
+    background: var(--tarefa);
+    color: var(--primaria);
+    border: 1px solid var(--borda);
+    border-radius: 10px;
+    padding: 11px;
+    font-size: 18px;
+    cursor: pointer;
+}
+
+.botao-icone:hover {
+    background: var(--borda);
+}
+
+.painel-xp {
+    background: #f0f2ff;
+    padding: 16px;
+    border-radius: 12px;
+    margin-bottom: 25px;
+}
+
+body.modo-escuro .painel-xp {
+    background: var(--tarefa);
+}
+
+.info-nivel {
+    display: flex;
+    justify-content: space-between;
+    gap: 10px;
+    font-size: 13px;
+    font-weight: bold;
+    margin-bottom: 10px;
+}
+
+.barra-progresso-fundo {
+    width: 100%;
+    height: 10px;
+    background: #d9def5;
+    border-radius: 10px;
+    overflow: hidden;
+}
+
+body.modo-escuro .barra-progresso-fundo {
+    background: #414965;
+}
+
+.barra-progresso-frente {
+    width: 0%;
+    height: 100%;
+    background: linear-gradient(90deg, #5875e8, #9a72e8);
+    border-radius: 10px;
+    transition: width 0.4s;
+}
+
+.mensagem-xp {
+    font-size: 11px;
+    color: var(--secundario);
+    margin-top: 9px;
+}
+
+.secao-tarefas h2 {
+    font-size: 18px;
+    margin-bottom: 13px;
+}
+
+.caixa-entrada {
+    display: flex;
+    gap: 8px;
+    margin-bottom: 20px;
+}
+
+input[type="text"] {
+    flex: 1;
+    width: 100%;
+    min-width: 0;
+    padding: 12px;
+    border: 1px solid var(--borda);
+    border-radius: 10px;
+    outline: none;
+    background: var(--cartao);
+    color: var(--texto);
+    font-size: 14px;
+}
+
+input[type="text"]:focus {
+    border-color: var(--primaria);
+}
+
+input[type="text"]::placeholder {
+    color: var(--secundario);
+}
+
+.botao-principal {
+    background: var(--primaria);
+    color: white;
+    border: none;
+    border-radius: 10px;
+    padding: 12px 14px;
+    font-weight: bold;
+    cursor: pointer;
+    white-space: nowrap;
+    transition: background 0.2s, transform 0.2s;
+}
+
+.botao-principal:hover {
+    background: var(--destaque);
+    transform: translateY(-1px);
+}
+
+.lista-tarefas {
+    list-style: none;
+    width: 100%;
+    max-height: 300px;
+    overflow-y: auto;
+}
+
+.item-tarefa {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 10px;
+    padding: 13px;
+    margin-bottom: 10px;
+    background: var(--tarefa);
+    border: 1px solid var(--borda);
+    border-radius: 10px;
+    color: var(--texto);
+    overflow-wrap: anywhere;
+    animation: aparecer 0.25s ease;
 }
 
 .info-tarefa-container {
     display: flex;
     flex-direction: column;
-    gap: 2px;
+    gap: 5px;
+    min-width: 0;
+}
+
+.item-tarefa.concluido span:first-child {
+    text-decoration: line-through;
+    color: var(--secundario);
 }
 
 .horario-tarefa {
-    font-size: 0.75rem;
-    font-weight: 700;
-    color: #3075db;
+    font-size: 11px;
+    color: var(--secundario);
 }
 
-body.modo-escuro .horario-tarefa {
-    color: #3895ff; 
+.acoes-tarefa {
+    display: flex;
+    gap: 10px;
+    flex-shrink: 0;
 }
 
+.botao-acao {
+    background: none;
+    border: none;
+    color: var(--primaria);
+    font-size: 16px;
+    cursor: pointer;
+    padding: 3px;
+}
+
+.botao-acao.excluir {
+    color: #e56c78;
+}
+
+.botao-acao:hover {
+    opacity: 0.65;
+}
+
+.rodape-aplicacao {
+    text-align: center;
+    margin-top: 18px;
+    font-size: 13px;
+    color: var(--secundario);
+}
+
+.foto-canto-inferior {
+    position: fixed;
+    bottom: 15px;
+    right: 15px;
+    width: 85px;
+    height: 100px;
+    object-fit: cover;
+    border-radius: 12px;
+    border: 2px solid var(--primaria);
+    box-shadow: 0 3px 10px rgba(0, 0, 0, 0.15);
+    z-index: 1000;
+}
 
 .cena-jogo {
     position: fixed;
-    bottom: 30px;
-    left: 30px;
+    bottom: 15px;
+    left: 15px;
     width: 250px;
     height: 250px;
-    z-index: 1000;
-    pointer-events: none; 
-    transform: scale(1.5); 
+    z-index: 5;
+    pointer-events: none;
+    transform: scale(0.8);
     transform-origin: bottom left;
 }
 
@@ -289,63 +294,110 @@ body.modo-escuro .horario-tarefa {
     position: absolute;
     width: 32px;
     height: 32px;
-    background-color: #1a56bc;
-    border-top: 8px solid #3895ff;
-    border-left: 8px solid #0c3375;
-    box-shadow: -3px 3px 6px rgba(0,0,0,0.4);
+    background: #5875c9;
+    border-top: 7px solid #91a9ff;
+    border-left: 7px solid #344a91;
+    box-shadow: -2px 2px 4px rgba(0, 0, 0, 0.2);
 }
 
 .personagem-container {
     position: absolute;
-    bottom: 32px; 
+    bottom: 32px;
     right: 8px;
     z-index: 20;
-    transition: transform 0.5s cubic-bezier(0.3, 1.2, 0.7, 1), filter 0.6s ease;
+    transition: transform 0.5s, filter 0.5s;
 }
 
 .personagem-sprite {
     display: flex;
     flex-direction: column;
     align-items: center;
-    animation: walk-bounce 0.4s infinite alternate;
+    animation: caminhar 0.4s infinite alternate;
 }
 
 .pixel-head {
-    width: 14px; height: 14px; 
-    background: #66b2ff;
-    border: 2px solid #001f4d; 
+    width: 14px;
+    height: 14px;
+    background: #ffcf9e;
+    border: 2px solid #34416a;
     border-radius: 2px;
 }
+
 .pixel-body {
-    width: 18px; height: 16px; 
-    background: #0055ff;
-    border: 2px solid #001f4d; 
+    width: 18px;
+    height: 16px;
+    background: #5875e8;
+    border: 2px solid #34416a;
     border-top: none;
 }
+
 .pixel-legs {
-    width: 16px; 
-    display: flex; 
+    width: 16px;
+    display: flex;
     justify-content: space-between;
 }
+
 .leg {
-    width: 6px; height: 8px; 
-    background: #0033aa;
-    border: 2px solid #001f4d; 
+    width: 6px;
+    height: 8px;
+    background: #354a9a;
+    border: 2px solid #26345e;
     border-top: none;
 }
 
+@keyframes caminhar {
+    from {
+        transform: translateY(0);
+    }
 
-@keyframes walk-bounce {
-    0% { transform: translateY(0); }
-    100% { transform: translateY(-4px); }
+    to {
+        transform: translateY(-3px);
+    }
 }
 
-@media (max-width: 768px) {
+@keyframes aparecer {
+    from {
+        opacity: 0;
+        transform: translateY(5px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+@media (max-width: 600px) {
+    body {
+        padding: 12px;
+        align-items: flex-start;
+    }
+
+    .cartao-aplicacao {
+        margin-top: 20px;
+        padding: 18px;
+    }
+
+    .cabecalho-aplicacao h1 {
+        font-size: 21px;
+    }
+
+    .botao-principal {
+        padding: 12px 10px;
+        font-size: 13px;
+    }
+
     .cena-jogo {
-        transform: scale(0.6);
-        transform-origin: bottom left;
-        bottom: 10px;
-        left: 10px;
+        transform: scale(0.5);
+        bottom: 5px;
+        left: 5px;
         opacity: 0.8;
+    }
+
+    .foto-canto-inferior {
+        width: 55px;
+        height: 65px;
+        bottom: 8px;
+        right: 8px;
     }
 }
